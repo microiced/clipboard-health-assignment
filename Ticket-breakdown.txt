@@ -1,0 +1,70 @@
+Ticket 1: Add a custom id field to the Agents table
+
+Description: Add a new field to the Agents table to allow Facilities to save custom ids for Agents they work with.
+
+Acceptance Criteria:
+
+A new field named custom_id is added to the Agents table
+The custom_id field is unique and not null
+The custom_id field is indexed for quick lookups
+The custom_id field is visible to Facilities in the Agent list view
+Facilities can edit the custom_id field in the Agent detail view
+The custom_id field is used in the Shifts table to associate Agents with Shifts
+Time/effort estimate: 2-3 days
+
+Implementation details:
+
+Add a migration script to create the custom_id field in the Agents table
+Add an index to the custom_id field for quick lookups
+Update the Shifts table to use the custom_id field to associate Agents with Shifts
+Ticket 2: Update getShiftsByFacility function to use custom Agent ids
+
+Description: Update the getShiftsByFacility function to use custom Agent ids instead of internal database ids.
+
+Acceptance Criteria:
+
+The getShiftsByFacility function retrieves all Shifts worked that quarter for the specified Facility
+The Agent metadata returned by the function includes the custom Agent id instead of the internal database id
+The function is thoroughly tested and no regressions are introduced
+Time/effort estimate: 1-2 days
+
+Implementation details:
+
+Modify the getShiftsByFacility function to use the custom Agent id to retrieve Agent metadata from the Agents table
+Update the function's query to join the Agents table on the Shifts table using the custom Agent id
+Update the function's return value to include the custom Agent id instead of the internal database id
+Ticket 3: Update generateReport function to use custom Agent ids
+
+Description: Update the generateReport function to use custom Agent ids instead of internal database ids.
+
+Acceptance Criteria:
+
+The generateReport function converts a list of Shifts into a PDF report
+The Agent ids displayed on the report are the custom Agent ids saved by the Facility
+The function is thoroughly tested and no regressions are introduced
+Time/effort estimate: 2-3 days
+
+Implementation details:
+
+Modify the generateReport function to use the custom Agent id to retrieve Agent metadata from the Agents table
+Update the function's query to join the Agents table on the Shifts table using the custom Agent id
+Update the function's report generation code to use the custom Agent id instead of the internal database id
+Ticket 4: Update the UI to display custom Agent ids
+
+Description: Update the UI to display the custom Agent ids saved by the Facilities instead of the internal database ids.
+
+Acceptance Criteria:
+
+The custom Agent ids are visible to Facilities in the Agent list view
+Facilities can edit the custom Agent id in the Agent detail view
+The custom Agent id is displayed on the Shifts list view
+The custom Agent id is displayed on the generated reports
+Time/effort estimate: 1-2 days
+
+Implementation details:
+
+Modify the Agent list view to display the custom Agent id instead of the internal database id
+Modify the Agent detail view to allow Facilities to edit the custom Agent id
+Modify the Shifts list view to display the custom Agent id instead of the internal database id
+Modify the report generation code to use the custom Agent id instead of the internal database id
+Note: Depending on the size and complexity of the codebase, it may be necessary to split these tickets into smaller, more granular tickets to make them more manageable.
